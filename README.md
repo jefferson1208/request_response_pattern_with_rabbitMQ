@@ -16,7 +16,7 @@ Install-Package MediatR
 ### Registro usuário
 ```csharp
 [HttpPost("cadastrar")]
-public async Task < ActionResult > Registrar(RegistroUsuarioViewModel registro) 
+public async Task <ActionResult> Registrar(RegistroUsuarioViewModel registro) 
 {
    var result = RegistrarUsuario();
 
@@ -37,7 +37,7 @@ public async Task < ActionResult > Registrar(RegistroUsuarioViewModel registro)
 ```
 ### Evento integração usuário registrado com sucesso
 ```csharp
-private async Task < ResponseMessage > RegistrarCliente(RegistroUsuarioViewModel registro) 
+private async Task <ResponseMessage> RegistrarCliente(RegistroUsuarioViewModel registro) 
 {
 
   var usuarioId = Guid.NewGuid(); //mesmo id que foi gerado no cadastro do usuário;
@@ -99,7 +99,7 @@ public class RegistroClienteIntegrationHandler: BackgroundService
 ```
 ### Registrar Cliente CommandHandler
 ```csharp
-public class ClienteCommandHandler: CommandHandler, IRequestHandler <RegistrarClienteCommand, ValidationResult>  
+public class ClienteCommandHandler: CommandHandler, IRequestHandler<RegistrarClienteCommand, ValidationResult>  
 {
    private readonly IClienteRepository _clienteRepository;
 
@@ -108,7 +108,7 @@ public class ClienteCommandHandler: CommandHandler, IRequestHandler <RegistrarCl
       _clienteRepository = clienteRepository;
    }
 
-   public async Task < ValidationResult > Handle(RegistrarClienteCommand message, CancellationToken cancellationToken) 
+   public async Task <ValidationResult> Handle(RegistrarClienteCommand message, CancellationToken cancellationToken) 
    {
       if (!message.Validar()) return message.ValidationResult;
 
